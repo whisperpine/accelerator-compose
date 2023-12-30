@@ -1,0 +1,20 @@
+services:
+  accelerator:
+    image: unitytechnologies/accelerator
+    # pull_policy: always
+    restart: always
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - unity-cache:/agent
+    environment:
+      - USER=${USER}
+      - PASSWORD=${PASSWORD}
+      - DISABLE_USAGE_STATS=true
+    ports:
+      - "${PORT_MAP_80}:80"
+      - "${PORT_MAP_443}:443"
+      - "10080:10080"
+
+volumes:
+  unity-cache:
+    name: unity-cache
